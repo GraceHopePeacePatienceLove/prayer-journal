@@ -1,6 +1,6 @@
 document.getElementById("journalForm").addEventListener("submit", function(e) {
   e.preventDefault();
-  
+
   const title = document.getElementById("title").value;
   const body = document.getElementById("body").value;
   const tag = document.getElementById("tag").value;
@@ -31,4 +31,3 @@ function renderEntries() {
 }
 
 window.onload = renderEntries;
-Add journal logic with localStorage
