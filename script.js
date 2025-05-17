@@ -1,3 +1,4 @@
+alert("Script loaded!");
 document.getElementById("journalForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
