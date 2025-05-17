@@ -30,5 +30,22 @@ function renderEntries() {
     list.appendChild(item);
   });
 }
+function fetchVerseOfTheDay() {
+  fetch('https://beta.ourmanna.com/api/v1/get/?format=json')
+    .then(response => response.json())
+    .then(data => {
+      const verse = data.verse.details.text;
+      const reference = data.verse.details.reference;
 
-window.onload = renderEntries;
+      document.getElementById("verseText").innerText = `"${verse}"`;
+      document.getElementById("verseRef").innerText = reference;
+    })
+    .catch(err => {
+      document.getElementById("verseText").innerText = "Unable to load verse. Please try again later.";
+    });
+}
+window.onload = () => {
+  renderEntries();
+  fetchVerseOfTheDay();
+};
+
