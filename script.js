@@ -31,18 +31,29 @@ function renderEntries() {
   });
 }
 function fetchVerseOfTheDay() {
-  fetch('https://beta.ourmanna.com/api/v1/get/?format=json')
+  fetch("https://beta.ourmanna.com/api/v1/get?format=json&order=daily")
     .then(response => response.json())
     .then(data => {
       const verse = data.verse.details.text;
       const reference = data.verse.details.reference;
 
+      // Display verse and reference
       document.getElementById("verseText").innerText = `"${verse}"`;
       document.getElementById("verseRef").innerText = reference;
+
+      // Add static version label
+      document.getElementById("verseVersion").innerText = "Version: KJV";
+
+      // Link to BibleGateway for full chapter
+      const chapterRef = reference.replace(/\s+/g, "+");
+      document.getElementById("fullChapterLink").href = `https://www.biblegateway.com/passage/?search=${chapterRef}`;
     })
-    .catch(err => {
+    .catch(error => {
+      console.error("Verse fetch failed:", error);
       document.getElementById("verseText").innerText = "Unable to load verse. Please try again later.";
     });
+}
+
 }
 window.onload = () => {
   renderEntries();
