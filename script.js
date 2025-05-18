@@ -47,10 +47,13 @@ function fetchVerseOfTheDay() {
       // Link to BibleGateway for full chapter
       const chapterRef = reference.replace(/\s+/g, "+");
       document.getElementById("fullChapterLink").href = `https://www.biblegateway.com/passage/?search=${chapterRef}`;
+      document.getElementById("verseSpinner").style.display = "none";
+
     })
     .catch(error => {
       console.error("Verse fetch failed:", error);
       document.getElementById("verseText").innerText = "Unable to load verse. Please try again later.";
+        document.getElementById("verseSpinner").style.display = "none";
     });
 }
 function copyVerse() {
