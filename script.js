@@ -53,7 +53,12 @@ function fetchVerseOfTheDay() {
       document.getElementById("verseText").innerText = "Unable to load verse. Please try again later.";
     });
 }
-
+function copyVerse() {
+  const text = document.getElementById("verseText").innerText;
+  const ref = document.getElementById("verseRef").innerText;
+  navigator.clipboard.writeText(`${text} — ${ref}`)
+    .then(() => alert("Verse copied to clipboard!"));
+}
 }
 window.onload = () => {
   renderEntries();
